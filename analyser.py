@@ -9,6 +9,7 @@ Tasks List:
 import sys
 import methods
 
+
 # sys.exit("No such a file") if (path := sys.argv[1]) else 0
 try:
     path = sys.argv[1]
@@ -22,6 +23,7 @@ try:
     with open(path) as file:
         for letter in file:
             text += letter
+
 except:
     sys.exit("No such a file or file extension is not '.txt'")
 
