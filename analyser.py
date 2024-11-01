@@ -1,3 +1,4 @@
+import methods
 
 """will be some path in somefile varriable"""
 somefile = "" 
@@ -7,5 +8,11 @@ try:
     with open(somefile) as file:
         text = [word for word in file]
 
-except:
-    raise ValueError("Something went wrong")
+except ValueError:
+    raise ValueError("Value Error")
+
+else:
+    raise NameError("Something went wrong")
+
+
+
