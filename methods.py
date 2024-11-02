@@ -1,3 +1,11 @@
+import string
+import re
+
+
+def main():
+    return 0
+
+
 def main_statistic(text):
     """
     letters, words and sentences
@@ -40,20 +48,35 @@ def letters_frequency(text):
 
     frequency = {}
 
-    for letter in "a-z":
+    for letter in string.ascii_lowercase:
 
         cnt = str(text).count(letter)
 
-        if cnt > 1:
-            frequency[letter: cnt]
+        if cnt > 0:
+            frequency[letter] = cnt
     
     return frequency
+
 
 def avg_values():
     pass
 
-def short_long_word(text):
-    #use split and min max
 
-if __name__ == "__main__":   
+def short_long_word(text):
+    words = str(text).split()
+
+    for i in range(len(words)):
+        words[i] = words[i][:-1] if re.search(r"^.*[,.!?]$", words[1]) else words[i]
+
+    longest_words = [word for word in words if len(word) == len(max(words, key=len))]
+    shortest_words = [word for word in words if len(word) == len(min(words, key=len))]
+
+    return {
+        "longest": longest_words,
+        "shortest": shortest_words,
+    }
+
+
+
+if __name__ == "__main__":
     main()

@@ -5,12 +5,11 @@ Tasks List:
 3. methods.py integration & making exceptions
 4. Custom skull fake loading before results 
 """
-
 import sys
 import methods
 
 
-# sys.exit("No such a file") if (path := sys.argv[1]) else 0
+
 try:
     path = sys.argv[1]
 
@@ -29,3 +28,4 @@ try:
 except:
     sys.exit("No such a file or file extension is not '.txt'")
 
+print(methods.letters_frequency(text))
