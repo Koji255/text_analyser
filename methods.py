@@ -2,6 +2,7 @@ import string
 import re
 
 
+
 def main():
     return 0
 
@@ -43,18 +44,16 @@ def popular_word(text):
 
 def letters_frequency(text):
     """"
-    given a dict. Using for loop and count if this letter in loop.count() > 1. Create a KV pair
+    returns total count of every letter in the text
     """
-
     frequency = {}
 
     for letter in string.ascii_lowercase:
-
-        cnt = str(text).count(letter)
+        cnt = str(text).lower().count(letter)
 
         if cnt > 0:
             frequency[letter] = cnt
-    
+
     return frequency
 
 
