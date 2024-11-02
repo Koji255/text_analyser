@@ -1,7 +1,7 @@
 import string
 import re
 
-
+from collections import Counter
 
 def main():
     return 0
@@ -11,8 +11,6 @@ def main_statistic(text):
     """
     letters, words and sentences
     """
-    # Will contain dict of results for aesthetic purpose. Ill return it
-
     lcnt, wcnt, scnt = 0, 1, 0
 
     for letter in text:
@@ -35,11 +33,18 @@ def main_statistic(text):
     }
 
 
-def popular_word(text):
+def popular_words(text):
     """
     top 10 most popular words
     """
-    pass
+    text = str(text)
+
+    words = re.findall(r"\b\w+\b", text.lower())
+
+    words_count = Counter(words)
+
+    return words_count.most_common(10)
+
 
 
 def letters_frequency(text):
@@ -62,10 +67,12 @@ def avg_values():
 
 
 def short_long_word(text):
+    """Defines words and returns shortest and longest of them"""
+
     words = str(text).split()
 
     for i in range(len(words)):
-        words[i] = words[i][:-1] if re.search(r"^.*[,.!?]$", words[1]) else words[i]
+        words[i] = words[i][:-1] if re.search(r"^.*[,.!?]$", words[i]) else words[i]
 
     longest_words = [word for word in words if len(word) == len(max(words, key=len))]
     shortest_words = [word for word in words if len(word) == len(min(words, key=len))]

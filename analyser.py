@@ -15,7 +15,7 @@ try:
 
 except:
     sys.exit("Please rerun the programm and enter path to the file as first comand line argument: 'python3 analyser.py your_path'")
-
+# Possibly use regex
 sys.exit("File must be in .txt format.") if path[-4:] != ".txt" else 0
 
 text = ""
@@ -28,4 +28,5 @@ try:
 except:
     sys.exit("No such a file or file extension is not '.txt'")
 
-print(methods.letters_frequency(text))
+print(methods.short_long_word(text))
+print(methods.popular_words(text))
