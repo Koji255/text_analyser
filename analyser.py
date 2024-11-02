@@ -17,6 +17,8 @@ try:
 except:
     sys.exit("Please rerun the programm and enter path to the file as first comand line argument: 'python3 analyser.py your_path'")
 
+sys.exit("File must be in .txt format.") if path[-4:] != ".txt" else 0
+
 text = ""
 
 try:
