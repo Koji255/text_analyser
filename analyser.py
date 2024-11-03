@@ -28,5 +28,4 @@ try:
 except:
     sys.exit("No such a file or file extension is not '.txt'")
 
-print(methods.short_long_word(text))
-print(methods.popular_words(text))
+print(methods.avg_length(text))

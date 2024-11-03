@@ -39,7 +39,7 @@ def popular_words(text):
     """
     text = str(text)
 
-    words = re.findall(r"\b\w+\b", text.lower())
+    words = re.findall(r"\b[a-z]+\b", text.lower())
 
     words_count = Counter(words)
 
@@ -62,8 +62,15 @@ def letters_frequency(text):
     return frequency
 
 
-def avg_values():
-    pass
+def avg_length(text):
+    
+    if not (words := re.findall(r"\b[a-z]+\b", str(text).lower())):
+        raise("ValueError!")
+    
+    total_length = sum(len(word) for word in words)
+
+    return total_length / len(words)
+
 
 
 def short_long_word(text):
