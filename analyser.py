@@ -28,4 +28,4 @@ try:
             text += letter
 
 except:
-    sys.exit("Error 3. Empty or broken file.")
+    raise sys.exit("Error 3. Empty or broken file.")
