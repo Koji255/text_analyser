@@ -47,7 +47,7 @@ print("Start writing ... \n")
 time.sleep(3)
 
 try:
-    with open("info.csv", "w") as file:
+    with open("results/info.csv", "w") as file:
         writer = csv.DictWriter(file, fieldnames=[
                                                 "total_letters",
                                                 "total_words",
