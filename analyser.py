@@ -7,6 +7,7 @@ Tasks List:
 """
 import sys
 import re
+import csv
 
 import methods
 
@@ -29,3 +30,38 @@ try:
 
 except:
     raise sys.exit("Error 3. Empty or broken file.")
+
+# Here will be custom loading
+
+with open("file_info.csv", "w") as file:
+    writer = csv.DictWriter(file, fieldnames=[
+                                            "total_letters",
+                                            "total_words",
+                                            "total_sentences",
+                                            "top_10_words",
+                                            "letters_frequency",
+                                            "words_average_length",
+                                            "sentences_average_length",
+                                            "shortest_word",
+                                            "longest_word",
+                                            ])
+
+    writer.writeheader()
+
+    writer.writerow(
+        {
+        "total_letters": methods.main_statistic(text)["letters"],
+        "total_words": methods.main_statistic(text)["words"],
+        "total_sentences": methods.main_statistic(text)["sentences"],
+
+        "top_10_words": methods.popular_words(text),
+
+        "letters_frequency": methods.letters_frequency(text),
+
+        "words_average_length": methods.avg_length(text)["words_average_length"],
+
+        "sentences_average_length": methods.avg_length(text)["sentences_average_length"],
+        
+        "shortest_word": methods.short_long_word(text)["longest"],
+        "longest_word": methods.short_long_word(text)["shortest"],
+        })

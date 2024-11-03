@@ -69,12 +69,12 @@ def avg_length(text):
     if not (words := re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)) or not (sentences := re.findall(r"(?:^|\s)[A-Z].+?[.!?]", str(text))):
         raise BaseException("Error 3. Empty or broken file")
     
-    words_total_length = sum(len(word) for word in words)
-    sentences_total_length = sum(len(sentence) for sentence in sentences)
+    words_average_length = sum(len(word) for word in words)
+    sentences_average_length = sum(len(sentence) for sentence in sentences)
 
     return {
-        "words_total_length": words_total_length / len(words),
-        "sentences_total_lenght": sentences_total_length / len(sentences),
+        "words_average_length": round((words_average_length / len(words)), 2),
+        "sentences_average_length": round((sentences_average_length / len(sentences)), 2),
     }
 
 
@@ -84,10 +84,7 @@ def short_long_word(text):
     Returns dict of the shortest and the longest word/words from text
     """
     # Another, more complex way to get list of words using regex 
-    words = str(text).lower().split()
-
-    for i in range(len(words)):
-        words[i] = words[i][:-1] if re.search(r"^.*[,.!?]$", words[i]) else words[i]
+    words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
 
     longest_words = [word for word in words if len(word) == len(max(words, key=len))]
     shortest_words = [word for word in words if len(word) == len(min(words, key=len))]
