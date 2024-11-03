@@ -47,7 +47,7 @@ time.sleep(1)
 print("Creating 'info.csv' file ...")
 time.sleep(5)
 
-print("Starting writing into 'info.csv' ... \n")
+print("Preparing for writing into 'info.csv' ... \n")
 time.sleep(3)
 
 try:
@@ -90,7 +90,7 @@ except:
     sys.exit("Failed to write 'info.csv' file")
 
 print("""
-    CONGRADULATIONS!
+     CONGRADULATIONS!
          ______
       .-"      "-.
      /            \\
@@ -104,5 +104,5 @@ print("""
       \\          /
        `--------`
         
-    LOADING COMPLITED!
+       WORK DONE!
     """)

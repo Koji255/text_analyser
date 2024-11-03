@@ -1,0 +1,2 @@
+total_letters,total_words,total_sentences,top_10_words,letters_frequency,words_average_length,sentences_average_length,shortest_word,longest_word
+12,3,1,"[('Your', 1), ('text', 1), ('here', 1)]","{'e': 3, 'h': 1, 'o': 1, 'r': 2, 't': 2, 'u': 1, 'x': 1, 'y': 1}",4.0,15.0,"['Your', 'text', 'here']","['Your', 'text', 'here']"
