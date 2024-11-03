@@ -6,6 +6,8 @@ Tasks List:
 4. Custom skull fake loading before results 
 """
 import sys
+import re
+
 import methods
 
 
@@ -14,9 +16,9 @@ try:
     path = sys.argv[1]
 
 except:
-    sys.exit("Please rerun the programm and enter path to the file as first comand line argument: 'python3 analyser.py your_path'")
-# Possibly use regex
-sys.exit("File must be in .txt format.") if path[-4:] != ".txt" else 0
+    sys.exit("Error 1. Rerun the program using path to the file as second CLA.")
+# Regex to filter the name of the file
+sys.exit("Error 2. File extension must be '.txt'") if not re.search(r"^.+['.txt']$", path) else 0
 
 text = ""
 
@@ -26,6 +28,4 @@ try:
             text += letter
 
 except:
-    sys.exit("No such a file or file extension is not '.txt'")
-
-print(methods.avg_length(text))
+    sys.exit("Error 3. Empty or broken file.")

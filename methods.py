@@ -9,7 +9,7 @@ def main():
 
 def main_statistic(text):
     """
-    letters, words and sentences
+    Returns dict of cnt of letters, words & sentences
     """
     lcnt, wcnt, scnt = 0, 1, 0
 
@@ -35,11 +35,10 @@ def main_statistic(text):
 
 def popular_words(text):
     """
-    top 10 most popular words
+    Returns list of 10 most popular word in ASC order
     """
-    text = str(text)
-
-    words = re.findall(r"\b[a-z]+\b", text.lower())
+    # Regex that returns all words excluding punctuation symbols.
+    words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
 
     words_count = Counter(words)
 
@@ -49,7 +48,7 @@ def popular_words(text):
 
 def letters_frequency(text):
     """"
-    returns total count of every letter in the text
+    Returns dict of count of every letter in the text excluding letters with value 0.
     """
     frequency = {}
 
@@ -63,20 +62,29 @@ def letters_frequency(text):
 
 
 def avg_length(text):
+    """
+    Returns float variable of average of all word's length 
+    """
+    # Regexes for filtering all words & sentences
+    if not (words := re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)) or not (sentences := re.findall(r"(?:^|\s)[A-Z].+?[.!?]", str(text))):
+        raise BaseException("Error")
     
-    if not (words := re.findall(r"\b[a-z]+\b", str(text).lower())):
-        raise("ValueError!")
-    
-    total_length = sum(len(word) for word in words)
+    words_total_length = sum(len(word) for word in words)
+    sentences_total_length = sum(len(sentence) for sentence in sentences)
 
-    return total_length / len(words)
+    return {
+        "words_total_length": words_total_length / len(words),
+        "sentences_total_lenght": sentences_total_length / len(sentences),
+    }
 
 
 
 def short_long_word(text):
-    """Defines words and returns shortest and longest of them"""
-
-    words = str(text).split()
+    """
+    Returns dict of the shortest and the longest word/words from text
+    """
+    # Another, more complex way to get list of words using regex 
+    words = str(text).lower().split()
 
     for i in range(len(words)):
         words[i] = words[i][:-1] if re.search(r"^.*[,.!?]$", words[i]) else words[i]
