@@ -12,6 +12,7 @@ def skull_loading():
     
     skull_frames = [
         """
+          LOADING...
            ______
         .-"      "-.
        /            \\
@@ -26,6 +27,7 @@ def skull_loading():
          `--------`
         """,
         """
+          LOADING...
            ______
         .-"      "-.
        /            \\
@@ -58,24 +60,6 @@ def skull_loading():
 
         # Waiting for the next frame
         time.sleep(frame_duration)
-
-    print("""
-      CONGRADULATIONS!
-           ______
-        .-"      "-.
-       /            \\
-      |              |
-      |,  .-.  .-.  ,|
-      | )(_o/  \\o_)( |
-      |/     /\\     \\|
-      (_     ^^     _)
-       \\__ \____/ __/
-        |          |
-        \\          /
-         `--------`
-          
-      LOADING COMPLITED!
-          """)
 
 
 

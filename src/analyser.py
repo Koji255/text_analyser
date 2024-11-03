@@ -19,22 +19,26 @@ try:
     path = sys.argv[1]
 
 except:
-    sys.exit("Error 1. Rerun the program using path to the file as second CLA.")
+    sys.exit("Error 1. Rerun the program using path to the text file as the first comand line argument.")
 # Regex to filter the name of the file
-sys.exit("Error 2. File extension must be '.txt'") if not re.search(r"^.+['.txt']$", path) else 0
-
-print("Reading file ...")
-time.sleep(3)
+sys.exit("Error 2. File extension must be '.txt'") if not re.search(r".+[^/]\.txt$", path) else 0
 
 text = ""
 
 try:
     with open(path) as file:
+
+        print("Reading file ...")
+        time.sleep(3)
+
         for letter in file:
             text += letter
+#
+except FileNotFoundError:
+    sys.exit("Not such a file.")
 
-except:
-    raise sys.exit("Error 3. Empty or broken file.")
+if not text:
+    raise ValueError("Empty or broken file.")
 
 # Here will be custom loading
 print("File has been read successfully! \n")
@@ -43,7 +47,7 @@ time.sleep(1)
 print("Creating 'info.csv' file ...")
 time.sleep(5)
 
-print("Start writing ... \n")
+print("Starting writing into 'info.csv' ... \n")
 time.sleep(3)
 
 try:
@@ -81,5 +85,24 @@ try:
             "shortest_word": methods.short_long_word(text)["longest"],
             "longest_word": methods.short_long_word(text)["shortest"],
             })
+        
 except:
-    raise BaseException("Error 3. Empty or broken file")
+    sys.exit("Failed to write 'info.csv' file")
+
+print("""
+    CONGRADULATIONS!
+         ______
+      .-"      "-.
+     /            \\
+    |              |
+    |,  .-.  .-.  ,|
+    | )(_o/  \\o_)( |
+    |/     /\\     \\|
+    (_     ^^     _)
+     \\__ \\____/ __/
+      |          |
+      \\          /
+       `--------`
+        
+    LOADING COMPLITED!
+    """)

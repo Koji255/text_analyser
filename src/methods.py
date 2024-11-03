@@ -67,7 +67,7 @@ def avg_length(text):
     """
     # Regexes for filtering all words & sentences
     if not (words := re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)) or not (sentences := re.findall(r"(?:^|\s)[A-Z].+?[.!?]", str(text))):
-        raise BaseException("Error 3. Empty or broken file")
+        raise ValueError("Empty or broken file")
     
     words_average_length = sum(len(word) for word in words)
     sentences_average_length = sum(len(sentence) for sentence in sentences)
