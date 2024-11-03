@@ -8,8 +8,10 @@ Tasks List:
 import sys
 import re
 import csv
+import time
 
 import methods
+import skull
 
 
 
@@ -20,6 +22,9 @@ except:
     sys.exit("Error 1. Rerun the program using path to the file as second CLA.")
 # Regex to filter the name of the file
 sys.exit("Error 2. File extension must be '.txt'") if not re.search(r"^.+['.txt']$", path) else 0
+
+print("Reading file ...")
+time.sleep(3)
 
 text = ""
 
@@ -32,36 +37,49 @@ except:
     raise sys.exit("Error 3. Empty or broken file.")
 
 # Here will be custom loading
+print("File has been read successfully! \n")
+time.sleep(1)
 
-with open("file_info.csv", "w") as file:
-    writer = csv.DictWriter(file, fieldnames=[
-                                            "total_letters",
-                                            "total_words",
-                                            "total_sentences",
-                                            "top_10_words",
-                                            "letters_frequency",
-                                            "words_average_length",
-                                            "sentences_average_length",
-                                            "shortest_word",
-                                            "longest_word",
-                                            ])
+print("Creating 'info.csv' file ...")
+time.sleep(5)
 
-    writer.writeheader()
+print("Start writing ... \n")
+time.sleep(3)
 
-    writer.writerow(
-        {
-        "total_letters": methods.main_statistic(text)["letters"],
-        "total_words": methods.main_statistic(text)["words"],
-        "total_sentences": methods.main_statistic(text)["sentences"],
+try:
+    with open("info.csv", "w") as file:
+        writer = csv.DictWriter(file, fieldnames=[
+                                                "total_letters",
+                                                "total_words",
+                                                "total_sentences",
+                                                "top_10_words",
+                                                "letters_frequency",
+                                                "words_average_length",
+                                                "sentences_average_length",
+                                                "shortest_word",
+                                                "longest_word",
+                                                ])
 
-        "top_10_words": methods.popular_words(text),
+        skull.skull_loading()
 
-        "letters_frequency": methods.letters_frequency(text),
+        writer.writeheader()
 
-        "words_average_length": methods.avg_length(text)["words_average_length"],
+        writer.writerow(
+            {
+            "total_letters": methods.main_statistic(text)["letters"],
+            "total_words": methods.main_statistic(text)["words"],
+            "total_sentences": methods.main_statistic(text)["sentences"],
 
-        "sentences_average_length": methods.avg_length(text)["sentences_average_length"],
-        
-        "shortest_word": methods.short_long_word(text)["longest"],
-        "longest_word": methods.short_long_word(text)["shortest"],
-        })
+            "top_10_words": methods.popular_words(text),
+
+            "letters_frequency": methods.letters_frequency(text),
+
+            "words_average_length": methods.avg_length(text)["words_average_length"],
+
+            "sentences_average_length": methods.avg_length(text)["sentences_average_length"],
+
+            "shortest_word": methods.short_long_word(text)["longest"],
+            "longest_word": methods.short_long_word(text)["shortest"],
+            })
+except:
+    raise BaseException("Error 3. Empty or broken file")
