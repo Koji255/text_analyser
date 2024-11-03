@@ -1,5 +1,5 @@
-import sys
-import time
+"""This module created using AI"""
+import sys, time
 
 
 
@@ -7,9 +7,9 @@ def main():
     return 0
 
 
-# Кадры с черепом, где челюсть открывается и закрывается
+# Frames
 def skull_loading():
-    # Кадры с черепом
+    
     skull_frames = [
         """
            ______
@@ -42,21 +42,21 @@ def skull_loading():
         """,
     ]
 
-    # Время на один кадр и продолжительность
+    # Animation settings
     loading_duration = 11
     frame_duration = 0.7
     steps = int(loading_duration / frame_duration)
 
-    # Основной цикл
+    # Main cycle
     for i in range(steps):
-        # Очистка экрана
+        # Screen cleaning
         sys.stdout.write('\033[H\033[J')  # Очищает экран
 
-        # Показ текущего кадра
+        # Current frame
         print(skull_frames[i % len(skull_frames)])
         sys.stdout.flush()
 
-        # Ожидание перед следующим кадром
+        # Waiting for the next frame
         time.sleep(frame_duration)
 
     print("""
