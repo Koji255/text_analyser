@@ -26,4 +26,4 @@ This script analyzes a text file, extracting various statistical parameters such
 ## Usage
 The script takes the path to a text file as a command-line argument. For example:
 ```bash
-python analyze.py path_to_file.txt
+python src/analyser.py path_to_file.txt
