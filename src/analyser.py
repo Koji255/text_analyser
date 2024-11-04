@@ -10,16 +10,19 @@ import re
 import csv
 import time
 
-import methods
+from methods import *
 import skull
 
 
 
 try:
+    if len(sys.argv) != 2:
+        raise SystemError()
+    
     path = sys.argv[1]
 
 except:
-    sys.exit("Error 1. Rerun the program using path to the text file as the first comand line argument.")
+    sys.exit("Error 1. Rerun the program using path to the text file as the first and single comand line argument.")
 # Regex to filter the name of the file
 sys.exit("Error 2. File extension must be '.txt'") if not re.search(r".+[^/]\.txt$", path) else 0
 
@@ -28,27 +31,39 @@ text = ""
 try:
     with open(path) as file:
 
-        print("Reading file ...")
+        print("Reading file...")
         time.sleep(3)
 
         for letter in file:
             text += letter
-#
+
 except FileNotFoundError:
     sys.exit("Not such a file.")
 
 if not text:
     raise ValueError("Empty or broken file.")
 
-# Here will be custom loading
 print("File has been read successfully! \n")
 time.sleep(1)
 
-print("Creating 'info.csv' file ...")
+print("Creating 'info.csv' file...")
 time.sleep(5)
 
-print("Preparing for writing into 'info.csv' ... \n")
+print("Preparing for writing into 'info.csv'...")
 time.sleep(3)
+
+data = {
+    "total_letters": main_statistic(text)["letters"],
+    "total_words": main_statistic(text)["words"],
+    "total_sentences": main_statistic(text)["sentences"],
+    "top_10_words": popular_words(text)["most_common"],
+    "letters_frequency": letters_frequency(text),
+    "words_average_length": avg_length(text)["words_average_length"],
+    "sentences_average_length": avg_length(text)["sentences_average_length"],
+    "unique_words": popular_words(text)["unique_words"],
+    "shortest_word": short_long_word(text)["shortest"],
+    "longest_word": short_long_word(text)["longest"],
+}
 
 try:
     with open("results/info.csv", "w") as file:
@@ -60,31 +75,64 @@ try:
                                                 "letters_frequency",
                                                 "words_average_length",
                                                 "sentences_average_length",
+                                                "unique_words",
                                                 "shortest_word",
                                                 "longest_word",
                                                 ])
-
-        skull.skull_loading()
 
         writer.writeheader()
 
         writer.writerow(
             {
-            "total_letters": methods.main_statistic(text)["letters"],
-            "total_words": methods.main_statistic(text)["words"],
-            "total_sentences": methods.main_statistic(text)["sentences"],
+            "total_letters": data["total_letters"],
+            "total_words": data["total_words"],
+            "total_sentences": data["total_sentences"],
 
-            "top_10_words": methods.popular_words(text),
+            "top_10_words": data["top_10_words"],
 
-            "letters_frequency": methods.letters_frequency(text),
+            "letters_frequency": data["letters_frequency"],
 
-            "words_average_length": methods.avg_length(text)["words_average_length"],
+            "words_average_length": data["words_average_length"],
+            "sentences_average_length": data["sentences_average_length"],
 
-            "sentences_average_length": methods.avg_length(text)["sentences_average_length"],
-
-            "shortest_word": methods.short_long_word(text)["longest"],
-            "longest_word": methods.short_long_word(text)["shortest"],
+            "unique_words": data["unique_words"],
+            
+            "shortest_word": data["shortest_word"],
+            "longest_word": data["longest_word"],
             })
+        
+        print("Report in 'info.csv' loaded.\n")
+        time.sleep(0.5)
+        print("Preparing for writing 'info.txt' report")
+        time.sleep(3)
+    
+    with open("results/info.txt", "w") as file:
+
+        # Skull Loading
+        skull.skull_loading()
+
+        file.write(
+            f"""
+            +===================+
+            |RESULTS OF ANALYSIS|
+            +===================+
+            |Total Letters: {data["total_letters"]}
+            |Total Words: {data["total_words"]}
+            |Total Sentences: {data["total_sentences"]}
+            |~~~~~~~~~~~~~~~~~
+            |Top 10 most popular words: {data["top_10_words"]}
+            |~~~~~~~~~~~~~~~~~
+            |Letter Frequency: {data["letters_frequency"]}
+            |~~~~~~~~~~~~~~~~~
+            |Words average length: {data["words_average_length"]}
+            |Sentences Average length: {data["sentences_average_length"]}
+            |~~~~~~~~~~~~~~~~~
+            |Unique Words: {data["unique_words"]}
+            |~~~~~~~~~~~~~~~~~
+            |Shortest Word(s): {data["shortest_word"]}
+            |Longest Words(s): {data["longest_word"]}
+            +-----------------
+            """)
         
 except:
     sys.exit("Failed to write 'info.csv' file")

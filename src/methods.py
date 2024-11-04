@@ -40,9 +40,21 @@ def popular_words(text):
     # Regex that returns all words excluding punctuation symbols.
     words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
 
+    # Returns dict with K as a word and V as a count
     words_count = Counter(words)
 
-    return words_count.most_common(10)
+    unique_words = []
+
+    # Multiple unpacking
+    for word, count in words_count.items():
+        if count == 1:
+            unique_words.append(word)
+    
+
+    return {
+        "most_common": words_count.most_common(10),
+        "unique_words": unique_words,
+    }
 
 
 
@@ -66,15 +78,15 @@ def avg_length(text):
     Returns float variable of average of all word's length 
     """
     # Regexes for filtering all words & sentences
-    if not (words := re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)) or not (sentences := re.findall(r"(?:^|\s)[A-Z].+?[.!?]", str(text))):
+    if not (words := re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)) or not (sentences := re.findall(r"(?:^|\s)([A-Z].+?)[.!?]", str(text))):
         raise ValueError("Empty or broken file")
     
-    words_average_length = sum(len(word) for word in words)
-    sentences_average_length = sum(len(sentence) for sentence in sentences)
+    words_total_length = sum(len(word) for word in words)
+    sentences_total_length = sum(len(sentence) for sentence in sentences)
 
     return {
-        "words_average_length": round((words_average_length / len(words)), 2),
-        "sentences_average_length": round((sentences_average_length / len(sentences)), 2),
+        "words_average_length": round((words_total_length / len(words)), 2),
+        "sentences_average_length": round((sentences_total_length / len(sentences)), 2),
     }
 
 
@@ -86,12 +98,12 @@ def short_long_word(text):
     # Another, more complex way to get list of words using regex 
     words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
 
-    longest_words = [word for word in words if len(word) == len(max(words, key=len))]
     shortest_words = [word for word in words if len(word) == len(min(words, key=len))]
+    longest_words = [word for word in words if len(word) == len(max(words, key=len))]
 
     return {
-        "longest": longest_words,
         "shortest": shortest_words,
+        "longest": longest_words,
     }
 
 

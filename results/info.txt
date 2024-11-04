@@ -1,0 +1,21 @@
+
+            +===================+
+            |RESULTS OF ANALYSIS|
+            +===================+
+            |Total Letters: 12
+            |Total Words: 3
+            |Total Sentences: 1
+            |~~~~~~~~~~~~~~~~~
+            |Top 10 most popular words: [('Your', 1), ('text', 1), ('here', 1)]
+            |~~~~~~~~~~~~~~~~~
+            |Letter Frequency: {'e': 3, 'h': 1, 'o': 1, 'r': 2, 't': 2, 'u': 1, 'x': 1, 'y': 1}
+            |~~~~~~~~~~~~~~~~~
+            |Words average length: 4.0
+            |Sentences Average length: 14.0
+            |~~~~~~~~~~~~~~~~~
+            |Unique Words: ['Your', 'text', 'here']
+            |~~~~~~~~~~~~~~~~~
+            |Shortest Word(s): ['Your', 'text', 'here']
+            |Longest Words(s): ['Your', 'text', 'here']
+            +-----------------
+            
