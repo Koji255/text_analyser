@@ -3,8 +3,25 @@ import re
 
 from collections import Counter
 
+import language_tool_python
+
+
+
 def main():
     return 0
+
+
+def speller(text):
+    """
+    Returns str var of spelled text
+    """
+    # Connecting to the local server
+    tool = language_tool_python.LanguageTool("en")
+
+    # Finding spelling mistakes
+    matches = tool.check(text)
+
+    return language_tool_python.utils.correct(text, matches)
 
 
 def main_statistic(text):

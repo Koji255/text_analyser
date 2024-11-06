@@ -32,7 +32,7 @@ try:
     with open(path) as file:
 
         print("Reading file...")
-        time.sleep(3)
+        time.sleep(2)
 
         for letter in file:
             text += letter
@@ -44,13 +44,13 @@ if not text:
     raise ValueError("Empty or broken file.")
 
 print("File has been read successfully! \n")
-time.sleep(1)
+# time.sleep(1)
 
 print("Creating 'info.csv' file...")
-time.sleep(5)
+# time.sleep(5)
 
 print("Preparing for writing into 'info.csv'...")
-time.sleep(3)
+# time.sleep(3)
 
 data = {
     "total_letters": main_statistic(text)["letters"],
@@ -102,9 +102,9 @@ try:
             })
         
         print("Report in 'info.csv' loaded.\n")
-        time.sleep(0.5)
+        # time.sleep(0.5)
         print("Preparing for writing 'info.txt' report")
-        time.sleep(3)
+        # time.sleep(3)
     
     with open("results/info.txt", "w") as file:
 
@@ -136,6 +136,11 @@ try:
         
 except:
     sys.exit("Failed to write 'info.csv' file")
+
+
+with open("results/spelled_text.txt", "w") as file:
+    """Speller here"""
+    file.write(speller(text))
 
 print("""
      CONGRADULATIONS!
