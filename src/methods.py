@@ -1,3 +1,4 @@
+import sys
 import string
 import re
 
@@ -15,11 +16,17 @@ def speller(text):
     """
     Returns str var of spelled text
     """
-    # Connecting to the local server
-    tool = language_tool_python.LanguageTool("en")
+    # Connecting to the local server & Setting up cache parameters
+    tool = language_tool_python.LanguageTool("en-US", config={
+        "cacheSize": 10,
+        "pipelineCaching": True
+        })
+
 
     # Finding spelling mistakes
     matches = tool.check(text)
+
+    tool.close()
 
     return language_tool_python.utils.correct(text, matches)
 
@@ -95,8 +102,8 @@ def avg_length(text):
     Returns float variable of average of all word's length 
     """
     # Regexes for filtering all words & sentences
-    if not (words := re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)) or not (sentences := re.findall(r"(?:^|\s)([A-Z].+?)[.!?]", str(text))):
-        raise ValueError("Empty or broken file")
+    if not (words := re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)) or not (sentences := re.findall(r"(?:^|\s)([A-Z].+?)([.!?]|$)", str(text))):
+        sys.exit("Error 4. Empty or broken file")
     
     words_total_length = sum(len(word) for word in words)
     sentences_total_length = sum(len(sentence) for sentence in sentences)

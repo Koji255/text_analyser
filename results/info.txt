@@ -2,20 +2,20 @@
             +===================+
             |RESULTS OF ANALYSIS|
             +===================+
-            |Total Letters: 609
-            |Total Words: 121
-            |Total Sentences: 5
+            |Total Letters: 14
+            |Total Words: 5
+            |Total Sentences: 1
             |~~~~~~~~~~~~~~~~~
-            |Top 10 most popular words: [('of', 6), ('the', 6), ('Lorem', 5), ('Ipsum', 5), ('to', 4), ('words', 3), ('a', 3), ('are', 2), ('in', 2), ('injected', 2)]
+            |Top 10 most popular words: [('Here', 1), ('is', 1), ('your', 1), ('text', 1)]
             |~~~~~~~~~~~~~~~~~
-            |Letter Frequency: {'a': 42, 'b': 9, 'c': 14, 'd': 22, 'e': 88, 'f': 16, 'g': 12, 'h': 25, 'i': 42, 'j': 3, 'k': 4, 'l': 22, 'm': 23, 'n': 42, 'o': 49, 'p': 10, 'r': 50, 's': 39, 't': 52, 'u': 21, 'v': 6, 'w': 7, 'x': 1, 'y': 10}
+            |Letter Frequency: {'e': 3, 'h': 1, 'i': 1, 'o': 1, 'r': 2, 's': 1, 't': 2, 'u': 1, 'x': 1, 'y': 1}
             |~~~~~~~~~~~~~~~~~
-            |Words average length: 4.95
-            |Sentences Average length: 148.0
+            |Words average length: 3.5
+            |Sentences Average length: 2.0
             |~~~~~~~~~~~~~~~~~
-            |Unique Words: ['There', 'many', 'vareations', 'pasages', 'available', 'but', 'majority', 'have', 'suffered', 'alteration', 'some', 'form', 'by', 'randomised', 'don', 'look', 'even', 'slightly', 'believable', 'If', 'going', 'use', 'passage', 'need', 'be', 'sure', 'there', 'isn', 'anything', 'embarrassing', 'hidden', 'middle', 'text', 'All', 'generators', 'tend', 'repeat', 'predefined', 'chunks', 'as', 'necessary', 'making', 'this', 'first', 'true', 'generator', 'It', 'uses', 'dictionary', 'over', 'Latin', 'combined', 'with', 'handful', 'model', 'sentence', 'structures', 'generate', 'looks', 'reasonable', 'The', 'generated', 'is', 'therefore', 'always', 'free', 'from', 'repetition', 'non', 'characteristic', 'etc']
+            |Unique Words: ['Here', 'is', 'your', 'text']
             |~~~~~~~~~~~~~~~~~
-            |Shortest Word(s): ['t', 'a', 't', 'a', 'a']
-            |Longest Words(s): ['characteristic']
+            |Shortest Word(s): ['is']
+            |Longest Words(s): ['Here', 'your', 'text']
             +-----------------
             

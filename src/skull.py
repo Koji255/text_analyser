@@ -45,7 +45,7 @@ def skull_loading():
     ]
 
     # Animation settings
-    loading_duration = 3
+    loading_duration = 8
     frame_duration = 0.7
     steps = int(loading_duration / frame_duration)
 

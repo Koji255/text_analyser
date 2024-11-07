@@ -32,16 +32,15 @@ try:
     with open(path) as file:
 
         print("Reading file...")
-        time.sleep(2)
 
         for letter in file:
             text += letter
 
 except FileNotFoundError:
-    sys.exit("Not such a file.")
+    sys.exit("Error 3. Not such a file.")
 
 if not text:
-    raise ValueError("Empty or broken file.")
+    sys.exit("Error 4. Empty or broken file.")
 
 print("File has been read successfully! \n")
 # time.sleep(1)
@@ -102,9 +101,9 @@ try:
             })
         
         print("Report in 'info.csv' loaded.\n")
-        # time.sleep(0.5)
+        time.sleep(0.5)
         print("Preparing for writing 'info.txt' report")
-        # time.sleep(3)
+        time.sleep(3)
     
     with open("results/info.txt", "w") as file:
 
