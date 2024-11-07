@@ -61,6 +61,24 @@ def skull_loading():
         # Waiting for the next frame
         time.sleep(frame_duration)
 
+def skull_congrats(message="WORK DONE!"):
+    print(f"""
+     CONGRADULATIONS!
+         ______
+      .-"      "-.
+     /            \\
+    |              |
+    |,  .-.  .-.  ,|
+    | )(_o/  \\o_)( |
+    |/     /\\     \\|
+    (_     ^^     _)
+     \\__ \\____/ __/
+      |          |
+      \\          /
+       `--------`
+        
+{message}
+    """)
 
 
 if __name__ == "__main__":

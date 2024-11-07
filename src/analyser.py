@@ -45,6 +45,35 @@ if not text:
 print("File has been read successfully! \n")
 # time.sleep(1)
 
+# Selecting work mode
+print("Select an option:",
+    "+----------------------+",
+    "| '1' - Analyse text   |",
+    "| '2' - Spell the text |",
+    "+----------------------+", sep="\n")
+
+option = ""
+
+while option != "1" and option != "2":
+    option = input("Option: ")
+
+if option == "2":
+    try:
+        with open("results/spelled_text.txt", "w") as file:
+            """Speller here"""
+            print("Spelling the text...")
+            file.write(speller(text))
+            
+            skull.skull_loading()
+            sys.exit(skull.skull_congrats(message="Text succesfully spelled!"))
+
+    except (FileNotFoundError, FileNotFoundError):
+        sys.exit("Error 5. 'results/' directory doesn't found.")
+
+    else:
+        sys.exit("Error 6. Failed to spell text.")
+
+
 print("Creating 'info.csv' file...")
 # time.sleep(5)
 
@@ -134,27 +163,6 @@ try:
             """)
         
 except:
-    sys.exit("Failed to write 'info.csv' file")
+    sys.exit("Error 7. Failed to write 'info.csv' file")
 
-
-with open("results/spelled_text.txt", "w") as file:
-    """Speller here"""
-    file.write(speller(text))
-
-print("""
-     CONGRADULATIONS!
-         ______
-      .-"      "-.
-     /            \\
-    |              |
-    |,  .-.  .-.  ,|
-    | )(_o/  \\o_)( |
-    |/     /\\     \\|
-    (_     ^^     _)
-     \\__ \\____/ __/
-      |          |
-      \\          /
-       `--------`
-        
-       WORK DONE!
-    """)
+skull.skull_congrats()
