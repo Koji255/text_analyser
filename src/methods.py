@@ -5,6 +5,7 @@ import re
 from collections import Counter
 
 import language_tool_python
+from spellchecker import SpellChecker
 
 
 
@@ -13,6 +14,17 @@ def main():
 
 
 def speller(text):
+    """Returns str variable of spelled text"""
+    spell = SpellChecker()
+
+    words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
+
+    misspelled = spell.unknown(words)
+
+    return misspelled
+
+
+def speller_old(text):
     """
     Returns str var of spelled text
     """
