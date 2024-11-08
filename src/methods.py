@@ -15,13 +15,25 @@ def main():
 
 def speller(text):
     """Returns str variable of spelled text"""
+    # words = re.findall(r"(^|\b[a-z]+\b|[,.!?:;]|$)|^\b[a-z]+['][a-z]+\b|[,.!?:;]|$", text, re.IGNORECASE)
+    words = str(text).split()
+
+    # print(words)
+
     spell = SpellChecker()
 
-    words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
+    spelled_words = []
 
-    misspelled = spell.unknown(words)
+    for i in range(len(words)):
+        # print(re.findall(fr"(?<=\s|\W){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text))
+        if words[i] not in spell and not re.search(fr"(?<=\s|\W){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text):
+            if words[i][-1] in ",.!?:;":
+                words[i] = spell.correction(words[i][:-1]) + words[i][-1]
+            else:
+                words[i] = spell.correction(words[i])
 
-    return misspelled
+    
+    return " ".join(words)
 
 
 def speller_old(text):

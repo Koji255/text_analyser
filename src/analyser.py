@@ -62,9 +62,9 @@ if option == "2":
         with open("results/spelled_text.txt", "w") as file:
             """Speller here"""
             print("Spelling the text...")
-            print(speller(text))
-            time.sleep(40)
+            # print(speller(text))
             file.write(speller(text))
+            time.sleep(60)
             
             skull.skull_loading()
             sys.exit(skull.skull_congrats(message="Text succesfully spelled!"))
