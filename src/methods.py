@@ -27,10 +27,18 @@ def speller(text):
     for i in range(len(words)):
         # print(re.findall(fr"(?<=\s|\W){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text))
         if words[i] not in spell and not re.search(fr"(?<=\s|\W){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text):
-            if words[i][-1] in ",.!?:;":
-                words[i] = spell.correction(words[i][:-1]) + words[i][-1]
+            
+            spelled_word = spell.correction(words[i])
+            
+            if spelled_word == None:
+                continue
+
+            elif words[i][-1] in ",.!?:;":
+                
+                words[i] = spelled_word + words[i][-1]
+
             else:
-                words[i] = spell.correction(words[i])
+                words[i] = spelled_word
 
     
     return " ".join(words)
