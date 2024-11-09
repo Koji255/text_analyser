@@ -2,20 +2,20 @@
             +===================+
             |RESULTS OF ANALYSIS|
             +===================+
-            |Total Letters: 466
-            |Total Words: 92
-            |Total Sentences: 4
+            |Total Letters: 12
+            |Total Words: 3
+            |Total Sentences: 1
             |~~~~~~~~~~~~~~~~~
-            |Top 10 most popular words: [('the', 6), ('Lorem', 4), ('Ipsum', 4), ('of', 4), ('and', 3), ('dummy', 2), ('text', 2), ('has', 2), ('a', 2), ('type', 2)]
+            |Top 10 most popular words: [('Your', 1), ('text', 1), ('here', 1)]
             |~~~~~~~~~~~~~~~~~
-            |Letter Frequency: {'a': 30, 'b': 5, 'c': 11, 'd': 16, 'e': 60, 'f': 6, 'g': 11, 'h': 14, 'i': 37, 'k': 6, 'l': 22, 'm': 19, 'n': 38, 'o': 24, 'p': 19, 'r': 25, 's': 38, 't': 42, 'u': 17, 'v': 5, 'w': 6, 'x': 2, 'y': 13}
+            |Letter Frequency: {'e': 3, 'h': 1, 'o': 1, 'r': 2, 't': 2, 'u': 1, 'x': 1, 'y': 1}
             |~~~~~~~~~~~~~~~~~
-            |Words average length: 5.21
+            |Words average length: 4.0
             |Sentences Average length: 2.0
             |~~~~~~~~~~~~~~~~~
-            |Unique Words: ['are', 'simply', 'printing', 'typeseting', 'industry', 'been', 'industrys', 'standard', 'ever', 'since', 'when', 'an', 'unknown', 'printer', 'took', 'galley', 'scrambled', 'it', 'to', 'make', 'specimen', 'boc', 'survived', 'not', 'only', 'five', 'centuries', 'but', 'also', 'leap', 'into', 'electronic', 'typesetting', 'remaining', 'essentially', 'unchanged', 'was', 'popularised', 'in', 'release', 'Letraset', 'sheets', 'containing', 'passages', 'more', 'recently', 'desktop', 'publishing', 'software', 'like', 'Aldus', 'PageMaker', 'including', 'versions']
+            |Unique Words: ['Your', 'text', 'here']
             |~~~~~~~~~~~~~~~~~
-            |Shortest Word(s): ['a', 'a']
-            |Longest Words(s): ['typesetting', 'essentially', 'popularised']
+            |Shortest Word(s): ['Your', 'text', 'here']
+            |Longest Words(s): ['Your', 'text', 'here']
             +-----------------
             

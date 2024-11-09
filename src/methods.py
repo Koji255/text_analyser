@@ -4,7 +4,6 @@ import re
 
 from collections import Counter
 
-import language_tool_python
 from spellchecker import SpellChecker
 
 
@@ -46,26 +45,8 @@ def speller(text):
 
     return " ".join(words)
 
-def speller_old(text):
-    """
-    Returns str var of spelled text
-    """
-    # Connecting to the local server & Setting up cache parameters
-    tool = language_tool_python.LanguageTool("en-US", config={
-        "cacheSize": 10,
-        "pipelineCaching": True
-        })
 
-
-    # Finding spelling mistakes
-    matches = tool.check(text)
-
-    tool.close()
-
-    return language_tool_python.utils.correct(text, matches)
-
-
-def main_statistic(text):
+def total_stats(text):
     """
     Returns dict of cnt of letters, words & sentences
     """
@@ -91,9 +72,9 @@ def main_statistic(text):
     }
 
 
-def popular_words(text):
+def repeatability(text):
     """
-    Returns list of 10 most popular word in ASC order
+    Returns list of 10 most popular word & * unique words
     """
     # Regex that returns all words excluding punctuation symbols.
     words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
@@ -131,7 +112,7 @@ def letters_frequency(text):
     return frequency
 
 
-def avg_length(text):
+def average_length(text):
     """
     Returns float variable of average of all word's length 
     """
@@ -156,7 +137,9 @@ def short_long_word(text):
     # Another, more complex way to get list of words using regex 
     words = re.findall(r"\b[a-z]+\b", str(text), re.IGNORECASE)
 
-    shortest_words = [word for word in words if len(word) == len(min(words, key=len))]
+    # Finding shortest word length excluding article "a"
+    min_length = max(2, len(min(words, key=len)))
+    shortest_words = [word for word in words if len(word) == min_length]
     longest_words = [word for word in words if len(word) == len(max(words, key=len))]
 
     return {
