@@ -62,12 +62,19 @@ if option == "2":
         with open("results/spelled_text.txt", "w") as file:
             """Speller here"""
             print("Spelling the text...")
-            print(speller(text))
-            file.write(speller(text))
-            time.sleep(60)
+            spelled_text = speller(text)
+
+            file.write(spelled_text)
             
             skull.skull_loading()
-            sys.exit(skull.skull_congrats(message="Text succesfully spelled!"))
+
+            skull.skull_congrats(message="Text succesfully spelled")
+
+            print("Display spelled text?")
+
+            if input("Option [Y|N]: ") in "yY":
+                print(f'\nSpelled text:\n{spelled_text}')
+            sys.exit()
 
     except (FileNotFoundError, FileNotFoundError):
         sys.exit("Error 5. 'results/' directory doesn't found.")

@@ -15,33 +15,36 @@ def main():
 
 def speller(text):
     """Returns str variable of spelled text"""
-    # Includes * methods from lib
+    # Contains all spell checking functionality
     spell = SpellChecker()
-    # SpellChecker works only with Iterable
+    # SpellChecker works only with iterable objects
     words = str(text).split()
+    # Finds all misspeled words from the list
+    misspeled_words = spell.unknown(words)
 
-    for i in range(len(words)):
-        # Words didn't exists in spell dict and not a name of something and not a reduction
-        if words[i] not in spell and not re.search(
-            fr"(?<=\s|\W|[.!?]){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text):
-            
-            # Most likely variation of word
-            spelled_word = spell.correction(words[i])
-            # If no likely matches
+    for i, word in enumerate(words):
+        # If word is misspeled and not a reduction
+        if word in misspeled_words and not re.search(
+            fr"\b{word.capitalize()}\b", text):
+            # Most likely word spell option
+            spelled_word = spell.correction(word)
+
             if not spelled_word:
                 continue
-            # In case of quote
-            elif words[i][0] in ['"', "'"]:
-                words[i] = words[i][0] + spelled_word + words[i][-1]
-            # If in the end word have punctuation tail: "hello,"
-            elif words[i][-1] in string.punctuation:
-                words[i] = spelled_word + words[i][-1]
-            # Default case
-            else:
-                words[i] = spelled_word
+
+            prefix, suffix = "", ""
+            # Handles first symbol of word
+            if word[0] in ["'", '"']:
+                prefix = word[0]
+                word = word[1:]
+            # Handles last symbol of word
+            if word[-1] in string.punctuation:
+                suffix = word[-1]
+                word = word[:-1]
+
+            words[i] = f"{prefix}{spelled_word}{suffix}"
 
     return " ".join(words)
-
 
 def speller_old(text):
     """
