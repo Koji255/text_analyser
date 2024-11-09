@@ -15,32 +15,31 @@ def main():
 
 def speller(text):
     """Returns str variable of spelled text"""
-    # words = re.findall(r"(^|\b[a-z]+\b|[,.!?:;]|$)|^\b[a-z]+['][a-z]+\b|[,.!?:;]|$", text, re.IGNORECASE)
+    # Includes * methods from lib
+    spell = SpellChecker()
+    # SpellChecker works only with Iterable
     words = str(text).split()
 
-    # print(words)
-
-    spell = SpellChecker()
-
-    spelled_words = []
-
     for i in range(len(words)):
-        # print(re.findall(fr"(?<=\s|\W){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text))
-        if words[i] not in spell and not re.search(fr"(?<=\s|\W){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text):
+        # Words didn't exists in spell dict and not a name of something and not a reduction
+        if words[i] not in spell and not re.search(
+            fr"(?<=\s|\W|[.!?]){words[i].capitalize()}(?:|[,.!?:;]|$|\b)", text):
             
+            # Most likely variation of word
             spelled_word = spell.correction(words[i])
-            
-            if spelled_word == None:
+            # If no likely matches
+            if not spelled_word:
                 continue
-
-            elif words[i][-1] in ",.!?:;":
-                
+            # In case of quote
+            elif words[i][0] in ['"', "'"]:
+                words[i] = words[i][0] + spelled_word + words[i][-1]
+            # If in the end word have punctuation tail: "hello,"
+            elif words[i][-1] in string.punctuation:
                 words[i] = spelled_word + words[i][-1]
-
+            # Default case
             else:
                 words[i] = spelled_word
 
-    
     return " ".join(words)
 
 
