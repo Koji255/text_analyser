@@ -1,29 +1,37 @@
-# Text Analysis Script
+# Text Handler
 
-## Description
-This script analyzes a text file, extracting various statistical parameters such as the total number of letters, words, sentences, the most common words, and letter frequency. The analysis results are saved in CSV format for further use.
+Text Handler is a Python tool designed to analyze and process text data. It offers features such as text statistics extraction and error correction. This project is built to be flexible and extendable for various text processing tasks.
 
-## Project Tasks
-1. Handling command-line arguments.
-2. Implementing text analysis methods in `methods.py`.
-3. Integrating `methods.py` with exception handling.
-4. Adding a custom "skull" loading animation before displaying results.
+## Features
 
-## Requirements
-- Python 3.8+
-- Dependencies:
-  - `methods.py`: A file containing text analysis functions.
-  - `skull.py`: A file containing the `skull_loading()` function for a loading animation before displaying results.
+- **Text Analysis**: Extracts key statistics and information about the given text.
+- **Grammar Correction**: Identifies and suggests corrections for grammatical errors using advanced language models.
+- **Customizable**: Easily extendable to support additional text processing features.
 
 ## Installation
+
+To get started with Text Handler, follow the instructions below to install the necessary dependencies.
+
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/your_repository.git
-    cd your_project
-    ```
-2. Make sure `methods.py` and `skull.py` are located in the same directory as the main script.
+
+   ```bash
+   git clone https://github.com/Koji255/text_handler.git
+   ```
+
+2. Install the required packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ## Usage
-The script takes the path to a text file as a command-line argument. For example:
-```bash
-python src/analyser.py path_to_file.txt
+After installation, you can run the tool directly from the command line:
+
+  ```bash
+  python text_handler.py <path_to_text_file>
+  ```
+
+## Contributing
+
+If you'd like to contribute to Text Handler, feel free to fork the repository and create a pull request. Contributions are welcome!
+
