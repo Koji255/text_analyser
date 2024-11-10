@@ -25,10 +25,12 @@ To get started with Text Handler, follow the instructions below to install the n
    ```
 
 ## Usage
-After installation, you can run the tool directly from the command line:
+1. After installation, paste your text in the file.txt in the data directory.
+
+2. In the project directory you can run the tool directly from the command line:
 
   ```bash
-  python text_handler.py <path_to_text_file>
+  python src/text_handler.py data/file.txt
   ```
 
 ## Contributing
