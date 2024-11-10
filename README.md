@@ -30,7 +30,7 @@ To get started with Text Handler, follow the instructions below to install the n
 2. In the project directory you can run the tool directly from the command line:
 
   ```bash
-  python src/text_handler.py data/file.txt
+  python src/handler.py data/file.txt
   ```
 
 ## Contributing
