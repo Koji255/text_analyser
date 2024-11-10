@@ -44,7 +44,11 @@ def speller(text):
 
             words[i] = f"{prefix}{spelled_word}{suffix}"
 
-    return " ".join(words)
+    return {
+        "spelled_text": " ".join(words),
+        # For diagramm
+        "misspeled_words_amount": len(misspeled_words),
+    }
 
 
 def bars_graph(x, y, filename, xlabel, ylabel, title):
@@ -60,9 +64,9 @@ def bars_graph(x, y, filename, xlabel, ylabel, title):
     with plt.style.context("dark_background"):
         plt.bar(x, y, label="Frequency")
         
+        plt.title(title, color="w")
         plt.xlabel(xlabel, color="w")
         plt.ylabel(ylabel, color="w")
-        plt.title(title, color="w")
 
         try:
             plt.savefig(f"results/graphs/{filename}.svg")
@@ -84,16 +88,38 @@ def scatter_graph(x, y, filename, xlabel, ylabel, title):
     with plt.style.context("dark_background"):
         plt.scatter(x, y, label="Frequency")
         
+        plt.title(title, color="w")
         plt.xlabel(xlabel, color="w")
         plt.ylabel(ylabel, color="w")
-        plt.title(title, color="w")
 
         try:
             plt.savefig(f"results/graphs/{filename}.svg")
 
         except:
             sys.exit(f"Error 10. Failed to save graphic using path results/graphs/{filename}.svg")
-            
+
+    return 0
+
+
+def pie_graf(vals, labels, filename, title):
+    try:
+        if not (filename := re.search(r"^([^.]+?)(?:[.].*)?$", filename).group(1)):
+            raise AttributeError
+        
+    except AttributeError: 
+        sys.exit("Error 9. Invalid filename.")
+
+    with plt.style.context("dark_background"):
+        plt.pie(vals, labels=labels, autopct="%1.1f%%", colors=["#db9ea0", "#86f0d1"])
+        
+        plt.title(title)
+
+    try:
+        plt.savefig(f"results/graphs/{filename}.svg")
+        
+    except:
+        sys.exit(f"Error 10. Failed to save graphic using path results/graphs/{filename}.svg")
+
     return 0
 
 

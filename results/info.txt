@@ -1,21 +1,20 @@
 
-            +===================+
-            |RESULTS OF ANALYSIS|
-            +===================+
-            |Total Letters: 23
-            |Total Words: 6
-            |Total Sentences: 2
-            |~~~~~~~~~~~~~~~~~
-            |Top 10 most popular words: [('Hello', 1), ('world', 1), ('My', 1), ('name', 1), ('is', 1), ('Suisy', 1)]
-            |~~~~~~~~~~~~~~~~~
-            |Letter Frequency: {'a': 1, 'd': 1, 'e': 2, 'h': 1, 'i': 2, 'l': 3, 'm': 2, 'n': 1, 'o': 2, 'r': 1, 's': 3, 'u': 1, 'w': 1, 'y': 2}
-            |~~~~~~~~~~~~~~~~~
-            |Words average length: 3.83
-            |Sentences Average length: 2.0
-            |~~~~~~~~~~~~~~~~~
-            |Unique Words: ['Hello', 'world', 'My', 'name', 'is', 'Suisy']
-            |~~~~~~~~~~~~~~~~~
-            |Shortest Word(s): ['My', 'is']
-            |Longest Words(s): ['Hello', 'world', 'Suisy']
-            +-----------------
-            
++===================+
+|RESULTS OF ANALYSIS|
++===================+
+Total Letters: 12
+Total Words: 4
+Total Sentences: 1
+~~~~~~~~~~~~~~~~~~~~~
+Top 10 most popular words: [('Your', 1), ('text', 1), ('here', 1)]
+~~~~~~~~~~~~~~~~~~~~~
+Letter Frequency: {'e': 3, 'h': 1, 'o': 1, 'r': 2, 't': 2, 'u': 1, 'x': 1, 'y': 1}
+~~~~~~~~~~~~~~~~~~~~~
+Words average length: 4.0
+Sentences Average length: 2.0
+~~~~~~~~~~~~~~~~~~~~~
+Unique Words: ['Your', 'text', 'here']
+~~~~~~~~~~~~~~~~~~~~~
+Shortest Word(s): ['Your', 'text', 'here']
+Longest Words(s): ['Your', 'text', 'here']
+=====================
