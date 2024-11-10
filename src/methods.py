@@ -4,6 +4,7 @@ import re
 
 from collections import Counter
 
+import matplotlib.pyplot as plt
 from spellchecker import SpellChecker
 
 
@@ -44,6 +45,56 @@ def speller(text):
             words[i] = f"{prefix}{spelled_word}{suffix}"
 
     return " ".join(words)
+
+
+def bars_graph(x, y, filename, xlabel, ylabel, title):
+    try:
+        # Cut user file's extenion if exists and extract with group(1)
+        if not (filename := re.search(r"^([^.]+?)(?:[.].*)?$", filename).group(1)):
+            raise AttributeError
+        
+    except AttributeError: 
+        sys.exit("Error 9. Invalid filename.")
+
+    # plt graph's style settings
+    with plt.style.context("dark_background"):
+        plt.bar(x, y, label="Frequency")
+        
+        plt.xlabel(xlabel, color="w")
+        plt.ylabel(ylabel, color="w")
+        plt.title(title, color="w")
+
+        try:
+            plt.savefig(f"results/graphs/{filename}.svg")
+
+        except:
+            sys.exit(f"Error 10. Failed to save graphic using path results/graphs/{filename}.svg")
+
+    return 0
+
+
+def scatter_graph(x, y, filename, xlabel, ylabel, title):
+    try:
+        if not (filename := re.search(r"^([^.]+?)(?:[.].*)?$", filename).group(1)):
+            raise AttributeError
+        
+    except AttributeError: 
+        sys.exit("Error 9. Invalid filename.")
+
+    with plt.style.context("dark_background"):
+        plt.scatter(x, y, label="Frequency")
+        
+        plt.xlabel(xlabel, color="w")
+        plt.ylabel(ylabel, color="w")
+        plt.title(title, color="w")
+
+        try:
+            plt.savefig(f"results/graphs/{filename}.svg")
+
+        except:
+            sys.exit(f"Error 10. Failed to save graphic using path results/graphs/{filename}.svg")
+            
+    return 0
 
 
 def total_stats(text):

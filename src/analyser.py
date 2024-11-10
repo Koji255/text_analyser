@@ -11,7 +11,6 @@ import csv
 import time
 
 from methods import *
-import skull
 
 
 
@@ -27,11 +26,11 @@ except:
 sys.exit("Error 2. File extension must be '.txt'") if not re.search(r".+[^/]\.txt$", path) else 0
 
 text = ""
-
+# Reading the file
 try:
     with open(path) as file:
 
-        print("Reading file...")
+        print("Reading the file...")
 
         for letter in file:
             text += letter
@@ -40,42 +39,46 @@ except FileNotFoundError:
     sys.exit("Error 3. Not such a file.")
 
 if not text:
-    sys.exit("Error 4. Empty or broken file.")
+    sys.exit("Error 4. Empty or a broken file.")
 
 print("File has been read successfully! \n")
-time.sleep(0.5)
+time.sleep(0.2)
 
 # Selecting work mode
 print("Select an option:",
     "+----------------------+",
-    "| '1' - Analyse text   |",
-    "| '2' - Spell the text |",
+    "| '1' - Spell the text |",
+    "| '2' - Analyse text   |",
+    "| '3' - Create a graph |",
     "+----------------------+", sep="\n")
 
 option = ""
 
-while option != "1" and option != "2":
+while option != "1" and option != "2" and option != "3":
     option = input("Option: ")
-# For speller option
-if option == "2":
+
+# Spelling the text
+if option == "1":
     try:
         with open("results/spelled_text.txt", "w") as file:
-            """Speller here"""
             print("Spelling the text...")
-            time.sleep(0.5)
+            time.sleep(0.3)
 
             spelled_text = speller(text)
 
             file.write(spelled_text)
-            
-            # skull.skull_loading()
 
-            skull.skull_congrats(message="Text succesfully spelled")
-
+            print("Spelling completed succesfully.")
             print("Display spelled text?")
 
-            if input("Option [Y|N]: ") in "yY":
-                print(f'\nSpelled text:\n{spelled_text}')
+            text_display_option = ""
+
+            while text_display_option not in ["y", "n"]:
+                text_display_option = input("Option [Y|N]: ").lower()
+            
+            if text_display_option == "y":
+                print(f"\nSpelled text:\n{spelled_text}")
+
             sys.exit()
 
     except (FileNotFoundError, FileExistsError):
@@ -84,10 +87,7 @@ if option == "2":
     else:
         sys.exit("Error 6. Failed to spell text.")
 
-
-print("Creating 'info.csv' file...",
-      "Preparing for writing into 'info.csv'...", sep="\n")
-
+# Data dict for the next 2 options
 data = {
     "total_stats": total_stats(text),
     "repeatability": repeatability(text),
@@ -96,11 +96,50 @@ data = {
     "short_long_word": short_long_word(text),
 }
 
-try:
-    print("Writing 'info.csv' report...\n")
-    time.sleep(0.5)
+# Building graphics
+if option == "3":
+    print("\nSelect a graph to build:",
+          "+---------------------------------+",
+          "| '1' - Words Frequency (Scatter) |",
+          "| '2' - Words Frequency (Bars)    |",
+          "+---------------------------------+", sep="\n")
     
+    graph_option = ""
+
+    while graph_option != "1" and graph_option != "2":
+        graph_option = input("Option: ")
+
+    filename = input("Filename: ")
+
+    if graph_option == "1":        
+        scatter_graph(data["letters_frequency"].keys(),
+                      data["letters_frequency"].values(),
+                      filename, 
+                      "letter",
+                      "frequency",
+                      "Letters Frequency")
+
+    else:
+        bars_graph(data["letters_frequency"].keys(),
+                   data["letters_frequency"].values(),
+                   filename,
+                   "letter",
+                   "frequency",
+                   "Letters Frequency")
+    
+    sys.exit("Graph is built and saved in 'results/graphs/'.")
+
+# Option 2: Writing text analysis report in 2 files - .txt & .csv 
+print("Creating 'info.csv' file...",
+      "Preparing for writing into 'info.csv'...", sep="\n")
+time.sleep(0.2)
+# Writing into csv report
+try:
     with open("results/info.csv", "w") as file:
+
+        print("Writing 'info.csv' report...")
+        time.sleep(0.3)
+
         writer = csv.DictWriter(file, fieldnames=[
                                                 "total_letters",
                                                 "total_words",
@@ -135,19 +174,16 @@ try:
             "longest_word": data["short_long_word"]["longest"],
             })
         
-        print("Writing was done.\n")
+        print("Writing was completed.\n")
 except:
-    sys.exit("Error 7. Failed to write 'info.csv' file")          
+    sys.exit("Error 7. Failed to write 'info.csv' file.")          
 
-
+# Writing user friendly 'info.txt' report
 try:
     print("Writing 'info.txt' report...\n")
-    time.sleep(0.5)
+    time.sleep(0.3)
     
     with open("results/info.txt", "w") as file:
-        # Skull Loading
-        # skull.skull_loading()
-
         file.write(
             f"""
             +===================+
@@ -170,8 +206,8 @@ try:
             |Longest Words(s): {data["short_long_word"]["longest"]}
             +-----------------
             """)
+        
 except:
-    sys.exit("Error 8. Failed to write 'info.txt' file")
+    sys.exit("Error 8. Failed to write 'info.txt' file.")
 
-
-skull.skull_congrats()
+sys.exit("Work successfully completed.")
