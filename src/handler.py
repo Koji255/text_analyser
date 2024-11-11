@@ -81,10 +81,10 @@ if option == "1":
             
             if text_display_option == "y":
                 print(f"\nSpelled text:\n{spelled_text}")
-                time.sleep(5)
+                # time.sleep(5)
 
-            print("\n"*50)
-            sys.exit(cowsay.dragon("This Was CS50 ♡"))
+            # print("\n"*50)
+            # sys.exit(cowsay.dragon("R-R-ROOARRRRRRRRR"))
 
     except (FileNotFoundError, FileExistsError):
         sys.exit("Error 5. 'results/' directory doesn't found.")
